@@ -1,0 +1,39 @@
+<div class="container">
+   <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      <div class="panel panel-info">
+         <div class="panel-heading">
+            <div class="panel-title">{{'Sign In' | translate}} <span class="pull-right"><a routerLink="/registration" title="{{'Sign Up' | translate}}">{{'Sign Up' | translate}}</a> </span></div>
+         </div>
+         <div style="padding-top:30px" class="panel-body">
+            <form class="form-horizontal" [formGroup]="form" role="form" (ngSubmit)="loginWithEmail($event,user.name,user.password)">
+            <div style="margin-bottom: 14px" class="input-group">
+               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+               <input id="name" type="text" autocomplete="off" class="form-control validate" [(ngModel)]="user.name" formControlName="name" placeholder="{{'Email' | translate}}" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid">
+            </div>
+
+            <label for="name" *ngIf="!form.controls['name'].valid && form.controls['name'].dirty" style="color:#a94442"> {{'Email is required, email format is not valid'| translate}}</label>
+            <div style="margin-bottom: 14px" class="input-group">
+               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+               <input id="password" type="password" class="form-control validate" #password [(ngModel)]="user.password" formControlName="password" placeholder="{{'Password' | translate}}" [class.invalid]="form.controls['password'].touched && !form.controls['password'].valid">
+            </div>
+
+            <label for="password" autocomplete="off" *ngIf="!form.controls['password'].valid && form.controls['password'].dirty" style="color:#a94442">{{'Password is required and needs to contain at least 6 chars'| translate}}</label>
+            <div class="input-group">
+               <div class="checkbox">
+                  <label><input id="login-remember" type="checkbox" name="remember" value="1">{{'Remember Me' | translate}}</label>
+               </div>
+            </div>
+            <div style="margin-top:10px" class="form-group">
+               <!-- Button -->
+               <div class="col-sm-12 controls">
+                  <input class="btn btn-success" type="submit" [disabled]="!form.valid" title="{{'Login' | translate}}" value="{{'Login' | translate}}">
+                  <a id="btn-fblogin" href="#" (click)='loginWithGoogle()' title="{{'Login With Google' | translate}}" class="btn btn-primary">{{'Login With Google' | translate}}</a>
+               </div>
+            </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+
+

@@ -1,0 +1,81 @@
+<style>
+</style>
+<div class="container">
+       <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+   <h1>{{title}}</h1>
+   <hr>
+   <div class="row">
+      <!-- left column -->
+      <!-- edit form column -->
+      <div class="col-md-12 ">  
+         <form class="form-horizontal" role="form"  [formGroup]="form" (ngSubmit)="save(employee.$key)">
+         <div class="form-group">
+            <label class="col-lg-4 control-label">{{'UPLOAD IMAGE' | translate}}:</label>
+            <div class="col-lg-4">
+               <img 
+               id="blah"
+               [src]= 'employee.imageSrc'
+               [title]='employee.name | uppercase'
+               [style.width.px]='imageWidth' 
+               [style.margin.px]='imageMargin'
+               class="img-circle">  
+            </div>
+         </div>
+         <div class="form-group">
+            <label class="col-lg-3 control-label"></label>
+            <div class="col-lg-8">
+               <input type="file" id ="fileUploader" class="form-control"  (change)="processImage($event)"  accept="image/*" >   
+            </div>
+         </div>
+         
+          
+         <div class="form-group">
+            <label class="col-lg-3 control-label">{{'Name' | translate}}:</label>
+            <div class="col-lg-8">
+               <input id="name" type="text"  autocomplete="off" class="form-control validate"  [(ngModel)]="employee.name" formControlName="name" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid"  >
+               <label  for="name" *ngIf="!form.controls['name'].valid && form.controls['name'].dirty" style="color:#a94442"> {{'Name is required and needs to contain at least 10 chars' | translate}}</label> 
+            </div>
+         </div>
+
+       
+         <div class="form-group">
+            <label class="col-lg-3 control-label">{{'Designation' | translate}}:</label>
+            <div class="col-lg-8">
+               <input id="designation" autocomplete="off" type="text" class="form-control validate"  [(ngModel)]="employee.designation" formControlName="designation" [class.invalid]="form.controls['designation'].touched && !form.controls['designation'].valid" >
+               <label  for="designation" *ngIf="!form.controls['designation'].valid && form.controls['designation'].dirty" style="color:#a94442"> {{'Designation is required' | translate}}</label> 
+            </div>
+         </div>
+
+         <div class="form-group">
+            <label class="col-lg-3 control-label">{{'Phone Number' | translate}}:</label>
+            <div class="col-lg-8">
+               <input id="phoneNo" autocomplete="off" pattern="\d{10}" type="number" class="form-control validate"  [(ngModel)]="employee.phoneNo" formControlName="phoneNo" [class.invalid]="form.controls['phoneNo'].touched && !form.controls['phoneNo'].valid"  >
+               <label  for="phoneNo" *ngIf="!form.controls['phoneNo'].valid && form.controls['phoneNo'].dirty" style="color:#a94442"> {{'Phone number is required needs to contain  10 digits only' | translate}}  </label> 
+            </div>
+         </div>
+           
+           <div class="form-group">
+            <label class="col-lg-3 control-label">{{'Email' | translate}}:</label>
+            <div class="col-lg-8">
+               <input id="email" autocomplete="off"  type="text" class="form-control validate"  [(ngModel)]="employee.email" formControlName="email" [class.invalid]="form.controls['email'].touched && !form.controls['email'].valid"  >
+                <label  for="email" *ngIf="!form.controls['email'].valid && form.controls['email'].dirty" style="color:#a94442"> {{'Email is required, email format is not valid' | translate}}</label> 
+            </div>
+         </div>
+       
+          
+            <input id="isdeleted" type="hidden" class="form-control validate"  [(ngModel)]="employee.isdeleted" formControlName="isdeleted" >
+            <input id="imageSrc" type="hidden" class="form-control validate"  [(ngModel)]="employee.imageSrc" formControlName="imageSrc" >
+            <input id="$key" type="hidden" class="form-control validate"  [(ngModel)]="employee.$key" formControlName="$key" >
+         <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+               <input class="btn btn-success" type="submit"  [disabled]="!form.valid" title= "{{'Save' | translate}}" value="{{'Save' | translate}}">
+               <span></span>
+               <input type="button" class="btn btn-danger" (click) = "goBack()"  title= "{{'Back' | translate}}" value="{{'Back' | translate}}">
+            </div>
+         </div>
+         </form>
+      </div>
+   </div>
+</div>
+<hr>

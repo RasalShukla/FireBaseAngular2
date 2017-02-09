@@ -1,0 +1,27 @@
+a {
+    color:black;
+}
+table {
+        width: 100%;
+    }
+
+thead, tbody, tr, td, th { 
+    display: block; 
+    }
+
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+tbody {
+    overflow-y: auto;
+}
+
+tbody td, thead th {
+    width: 16.66%;
+    float: left;
+    border-bottom:0px solid #ddd;
+}
+

@@ -1,0 +1,84 @@
+<div class='panel panel-primary'>
+   <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+   <!-- Filter the Products   -->
+   <div class='panel-body'>
+      <div class="input-group">
+         <input type='text' autocomplete="off"  class="form-control" [(ngModel)]='listFilter' placeholder="{{'Search Employee' | translate}}" />
+         <span class="input-group-addon"><a title="{{'Add User' | translate}}" href="javascript:void(0)" (click) = "navigateUserForm()"><i  class='glyphicon glyphicon-user'></i></a></span>
+      </div>
+      <div class='row' *ngIf='listFilter'>
+         <div class='col-md-6'>
+            <div class='col-md-6'>
+               <h3>Filtered by: {{listFilter}} </h3>
+            </div>
+         </div>
+      </div>
+      <div class='table-responsive' *ngIf = "employees">       
+         <table class='table table-hover table-striped'>
+            <thead>
+               <tr>
+                  <th class="text-center">{{'Sr. No.' | translate}}</th>
+                  <th class="text-center">{{'Image' | translate}}</th>
+                  <th class="text-center">{{'Name' | translate}}</th>
+                  <th class="text-center">{{'Designation' | translate}}</th>
+                  <th class="text-center">{{'Edit' | translate}}</th>
+                  <th class="text-center">{{'Image' | translate}}</th>
+               </tr>
+            </thead>
+            <tbody [style.height.px]="tableInnerHeight">
+               <tr *ngFor='let employee of employees | crudemployeefilterpipe:listFilter; let idx = index' >
+                  <td class="text-center"><a href="javascript:void(0)" title="{{'Show Employee Information' | translate}}" (click)="getEmployeeInfo(employee.$key)">{{idx +1}}  </a></td>
+                  <td class="text-center">
+                     <img [src]='employee.imageSrc' [title]='employee.name | uppercase' [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
+                  </td>
+                  <td class="text-center">{{ employee.name }}</td>
+                  <td class="text-center">{{ employee.designation }}</td>
+                  <td class="text-center"> <a title="{{'Edit User' | translate}}" [routerLink]="['user-Profile', employee.$key]" href="javascript:void(0)"><i class='glyphicon glyphicon-pencil'></i> </a></td>
+                  <td class="text-center">
+                     <a title="{{'Delete User' | translate}}" href="javascript:void(0)" (click)="deleteEmployeeInfo(employee.$key,employee.name)"><i class='glyphicon glyphicon-trash'></i> </a>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h4 class="modal-title pull-left">{{'Employee Information' | translate}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal(emlpoyeeInfo.name)">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <div class='panel-body'>
+               <div class='row'>
+                  <div class='col-md-6'>
+                     <div class='row'>
+                        <div class='col-md-5'>{{'Name' | translate}}:</div>
+                        <div class='col-md-6' style="font-weight: bolder">{{emlpoyeeInfo.name}}</div>
+                     </div>
+                     <div class='row'>
+                        <div class='col-md-5'>{{'Designation' | translate}}:</div>
+                        <div class='col-md-6' style="font-weight: bolder">{{emlpoyeeInfo.designation}}</div>
+                     </div>
+                     <div class='row'>
+                        <div class='col-md-5'>{{'Email' | translate}}: </div>
+                        <div class='col-md-6' style="font-weight: bolder">{{emlpoyeeInfo.email}}</div>
+                     </div>
+                     <div class='row'>
+                        <div class='col-md-5'>{{'Phone No' | translate}}: </div>
+                        <div class='col-md-6' style="font-weight: bolder">{{emlpoyeeInfo.phoneNo}}</div>
+                     </div>
+                  </div>
+                  <div class='col-md-6'>
+                     <img class='center-block img-responsive' [style.width.px]='200' [style.margin.px]='2' [src]='emlpoyeeInfo.imageSrc' [title]='emlpoyeeInfo.name | uppercase'>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
