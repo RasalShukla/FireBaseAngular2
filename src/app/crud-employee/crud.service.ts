@@ -99,6 +99,7 @@ deleteEmployee(employeeKey: string) {
  * @returns Observable
  */
 updateEmployee(employeeKey: string, employee): Observable <any> {
+  employee.createdBy = this.uid;
   const items = this._angularFire.database.list('Employee');
   const employeeToSave = employee;
   delete(employeeToSave.$key);
