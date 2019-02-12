@@ -21,9 +21,7 @@ export const LANG_FR_TRANS = {
     'Log Off': 'Se déconnecter',
 
     'Microsoft Certified Professional, Hippa Certified, Sql Server Certified' : 'Microsoft Certified Professional, Hippa Certified, Sql Server Certified',
-    'Code Petenter [License Id :-L23rap576001]' : 'Code Petenter [License Id :-L23rap576001]',
-    'Created a framework, which helps you to control over all the browser from one place.' : "Créé un cadre, qui vous permet de contrôler sur tout le navigateur d' un seul endroit.",
-    'India Rank - 6,  World Rank - 126' : 'India Rang - 6, Classement mondial - 126',
+  
 
     'Search Employee':'Recherche Employé',
     'Sr. No.': 'M. No.',
